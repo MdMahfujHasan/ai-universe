@@ -1,11 +1,11 @@
-const loadData = () => {
+const loadData = dataLimit => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     fetch(url)
         .then(res => res.json())
-        .then(data => displayData(data.data.tools))
+        .then(data => displayData(data.data.tools, dataLimit))
 }
 
-loadData();
+loadData(6);
 
 const spinner = isSpinning => {
     const spinner = document.getElementById('spinner');
@@ -17,9 +17,24 @@ const spinner = isSpinning => {
     }
 }
 
-const displayData = ais => {
+document.getElementById('btn-see-more').addEventListener('click', function () {
+    loadData();
+    document.getElementById('btn-see-more').classList.add('hidden');
+    document.getElementById('btn-see-less').classList.remove('hidden');
+})
+
+document.getElementById('btn-see-less').addEventListener('click', function () {
+    loadData(6);
+    document.getElementById('btn-see-less').classList.add('hidden');
+    document.getElementById('btn-see-more').classList.remove('hidden');
+})
+
+const displayData = (ais, dataLimit) => {
     spinner(true);
     // console.log(ais.length);
+    if (dataLimit) {
+        ais = ais.slice(0, 6);
+    }
     const cardsContainer = document.getElementById('cards-container');
     cardsContainer.textContent = '';
     ais.forEach(ai => {
