@@ -43,7 +43,7 @@ const displayData = ais => {
             <div>
                 <h5 class="text-2xl font-semibold font-work-sans">Features</h5>
             </div>
-            <ol id="ol" class="font-work-sans font-normal text-base text-slate-500">
+            <ol class="font-work-sans font-normal text-base text-slate-500">
                 <li>${features[0]}</li>
                 <li>${features[1]}</li>
                 <li>${features[2] ? features[2] : ''}</li>
