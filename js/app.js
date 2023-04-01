@@ -76,7 +76,7 @@ const showDetails = async id => {
 }
 
 const displayDetails = details => {
-    console.log(details);
+    // console.log(details);
     const { description, pricing, features, integrations, accuracy, input_output_examples, image_link } = details;
     // console.log(accuracy);
     const accuracyPercent = (accuracy.score * 100) + '%' + ' accuracy';
