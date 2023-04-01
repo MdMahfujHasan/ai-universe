@@ -5,10 +5,7 @@ const loadData = () => {
         .then(data => displayData(data.data.tools))
 }
 
-document.getElementById('sort-by-date').addEventListener('click', function () {
-    loadData();
-})
-
+loadData();
 
 const spinner = isSpinning => {
     const spinner = document.getElementById('spinner');
@@ -53,7 +50,7 @@ const displayData = ais => {
                 <li>${features[3] ? features[3] : ''}</li>
             </ol>
             <hr>
-            <button onclick="showDetails('${id}')" data-modal-target="cardDetailsModal" data-modal-toggle="cardDetailsModal" data-modal-show="cardDetailsModal">
+            <button onclick="showDetails('${id}')" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <div class="flex justify-center items-center gap-36 mt-4">
                     <div>
                         <h5 class="text-2xl font-work-sans font-semibold">${name}</h5>
@@ -83,8 +80,9 @@ const displayDetails = details => {
     const { description, pricing, features, integrations, accuracy, input_output_examples, image_link } = details;
     // console.log(accuracy);
     const accuracyPercent = (accuracy.score * 100) + '%' + ' accuracy';
-    const modalDetails = document.getElementById('modal-details');
-    modalDetails.innerHTML = `
+    // const modalDetails = document.getElementById('modal-details');
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
 <section class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
     <div class="border border-rose-400 bg-rose-50 p-8 rounded-2xl">
         <p class="text-2xl font-semibold">${description}</p>
