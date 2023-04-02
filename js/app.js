@@ -17,6 +17,12 @@ const spinner = isSpinning => {
     }
 }
 
+document.getElementById('btn-sort-by-date').addEventListener('click', function () {
+    loadData('sort');
+    document.getElementById('btn-see-more').classList.add('hidden');
+    document.getElementById('btn-see-less').classList.remove('hidden');
+})
+
 document.getElementById('btn-see-more').addEventListener('click', function () {
     loadData();
     document.getElementById('btn-see-more').classList.add('hidden');
@@ -32,9 +38,16 @@ document.getElementById('btn-see-less').addEventListener('click', function () {
 const displayData = (ais, dataLimit) => {
     spinner(true);
     // console.log(ais.length);
-    if (dataLimit) {
+    if (dataLimit === 6) {
         ais = ais.slice(0, 6);
     }
+    else if (!dataLimit) {
+        ais = ais;
+    }
+    else if (dataLimit === 'sort') {
+        ais = ais.reverse();
+    }
+
     const cardsContainer = document.getElementById('cards-container');
     cardsContainer.textContent = '';
     ais.forEach(ai => {
